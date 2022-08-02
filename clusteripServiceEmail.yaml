@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: cluster-backend-service-email
+spec:
+  selector:
+    label: backends
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
