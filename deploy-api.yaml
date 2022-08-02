@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    label: frontend
+  name: frontend-public
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      label: frontend
+  template:
+    metadata:
+      labels:
+        label: frontend
+    spec:
+      containers:
+      - image: moatez/magiewebapp:v6
+        name: frontend-public
+        ports:
+        - containerPort: 8080
+        volumeMounts:
+          - mountPath: "/assets"
+            name: task-pv-storage-webapp
+      volumes:
+        - name: task-pv-storage-webapp
+          persistentVolumeClaim:
+            claimName: task-pv-claim-webapp
