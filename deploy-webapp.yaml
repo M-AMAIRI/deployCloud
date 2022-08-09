@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: deploment-container-magiewebapp
-          image: moatez/magiewebapp:v1
+          image: moatez/magiewebapp:v2
           imagePullPolicy: Always
           ports:
           - containerPort: 80
