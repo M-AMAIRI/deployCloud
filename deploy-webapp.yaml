@@ -20,6 +20,11 @@ spec:
           imagePullPolicy: Always
           ports:
           - containerPort: 80
+        - image: moatez/magieapi:v1
+          name: api
+          ports:
+          - containerPort: 5000
+            name: http
 ---
 apiVersion: v1
 kind: Service
