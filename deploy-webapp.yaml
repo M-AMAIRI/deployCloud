@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: deployment-name
+  name: deployment-magiewebapp
   labels:
     app: nginx-magiewebapp
 spec:
@@ -15,7 +15,7 @@ spec:
         app: nginx-magiewebapp  
     spec:
       containers:
-        - name: deploment-container-name
+        - name: deploment-container-magiewebapp
           image: moatez/magiewebapp:v1
           imagePullPolicy: Always
           ports:
@@ -25,8 +25,8 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    service-label-key: service-label-value 
-  name: service-name
+    service-label-key: service-magiewebapp-value 
+  name: service-magiewebapp-clusterip
 spec:
   type: ClusterIP
   ports:
@@ -40,8 +40,8 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    service-label-key: service-label-value 
-  name: service-name-loadbalancer
+    service-label-key: service-magiewebapp-value 
+  name: service-magiewebapp-loadbalancer
 spec:
   type: LoadBalancer
   ports:
