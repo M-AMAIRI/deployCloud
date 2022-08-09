@@ -1,28 +1,52 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  name: deployment-name
   labels:
-    label: backends
-  name: email-services
+    app: nginx-magiewebapp
 spec:
   replicas: 2
   selector:
     matchLabels:
-      label: backends
+      app: nginx-magiewebapp
   template:
     metadata:
       labels:
-        label: backends
+        app: nginx-magiewebapp  
     spec:
       containers:
-      - image: moatez/magieapi:v5
-        name: email-services
-        ports:
-        - containerPort: 8080
-        volumeMounts:
-          - mountPath: "/logsEmails"
-            name: task-pv-storage-api
-      volumes:
-        - name: task-pv-storage-api
-          persistentVolumeClaim:
-            claimName: task-pv-claim-api
+        - name: deploment-container-name
+          image: moatez/magiewebapp:v1
+          imagePullPolicy: Always
+          ports:
+          - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    service-label-key: service-label-value 
+  name: service-name
+spec:
+  type: ClusterIP
+  ports:
+  - name: service-port-name
+    port: 80
+    protocol: TCP
+  selector:
+    app: nginx-magiewebapp
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    service-label-key: service-label-value 
+  name: service-name-loadbalancer
+spec:
+  type: LoadBalancer
+  ports:
+  - name: service-port-name
+    port: 80
+    protocol: TCP
+  selector:
+    app: nginx-magiewebapp

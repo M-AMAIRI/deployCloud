@@ -2,27 +2,36 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    label: frontend
-  name: frontend-public
+    app: api
+  name: api
 spec:
   replicas: 2
   selector:
     matchLabels:
-      label: frontend
+      app: api
   template:
     metadata:
       labels:
-        label: frontend
+        app: api
     spec:
       containers:
-      - image: moatez/magiewebapp:v6
-        name: frontend-public
-        ports:
-        - containerPort: 8080
-        volumeMounts:
-          - mountPath: "/assets"
-            name: task-pv-storage-webapp
-      volumes:
-        - name: task-pv-storage-webapp
-          persistentVolumeClaim:
-            claimName: task-pv-claim-webapp
+        - image: moatez/magieapi:v1
+          name: api
+          ports:
+          - containerPort: 5000
+            name: http
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    service-label-key: service-api-value 
+  name: service-api-clusterip
+spec:
+  type: ClusterIP
+  ports:
+  - name: service-port-name
+    port: 5000
+    protocol: TCP
+  selector:
+    app: api
