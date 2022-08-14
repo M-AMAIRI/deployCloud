@@ -1,5 +1,5 @@
 ID,NomProduit,ImagePath,Prix,Description,Disponibilite,LienFacbook,Tel,Messenger
-1,ecouteur Earfun pro 2,https://github.com/M-AMAIRI/deployCloud/blob/main/DataStore/1.PNG,Prix,Description,DISPONIBLE,LienFacbook,+216 25 374 816,Magiewebshop
+1,ecouteur Earfun pro 2,../assets/images/1.PNG,Prix,Description,DISPONIBLE,LienFacbook,+216 25 374 816,Magiewebshop
 2,ecouteur Earfuns free 2,../assets/images/2.PNG,Prix,Description,VENDU,LienFacbook,+216 25 374 816,Magiewebshop
 3,google home,../assets/images/3.PNG,Prix,Description,DISPONIBLE,LienFacbook,+216 25 374 816,Magiewebshop
 4,Google home mini,../assets/images/4.PNG,Prix,Description,DISPONIBLE,LienFacbook,00+216 25 374 816,Magiewebshop
